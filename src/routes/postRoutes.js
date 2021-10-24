@@ -1,9 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const requireAuth = require("../middleware/requireAuth");
 
 const Post = mongoose.model("Post");
 
 const router = express.Router();
+
+router.use(requireAuth);
 
 router.get("/posts", async (req, res) => {
   const posts = await Post.find();
